@@ -39,35 +39,35 @@ public:
         for (int i = 0; i < position && temp; ++i) // Temporary node and position traverse the linked list
             temp = temp->next;
 
-        if (!temp) {
+        if (!temp) { // If the temporary node has exceeded the size limit
             cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
+            delete newNode; // Gets rid of the new node
             return;
         }
 
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
+        newNode->next = temp->next; // Next to the new node points to the node next to the temporary node
+        newNode->prev = temp; // Previous to the new node points to the temporary node
+        if (temp->next) // If the temporary node points to the next node,
+            temp->next->prev = newNode; // initialize the previous pointer to the new node
         else
-            tail = newNode;
-        temp->next = newNode;
+            tail = newNode; // The new node creates becomes the tail 
+        temp->next = newNode; // The node next to the temporary node points to the new node
     }
 
-    void delete_val(int value) {
-        if (!head) return;
+    void delete_val(int value) { // Function that deletes value of the first node 
+        if (!head) return; // If theres no head node, the list is empty 
 
-        Node* temp = head;
+        Node* temp = head; // Temporary pointer node becomes the head node, and traverses from there
         
-        while (temp && temp->data != value)
-            temp = temp->next;
+        while (temp && temp->data != value) // Traverse list until a node with a value is found
+            temp = temp->next; // 
 
-        if (!temp) return; 
+        if (!temp) return; // If theres no node with a value, stop
 
-        if (temp->prev)
-            temp->prev->next = temp->next;
+        if (temp->prev) // Temporary pointer node points to previous node 
+            temp->prev->next = temp->next; // The previous temporary node becomes the next node 
         else
-            head = temp->next; 
+            head = temp->next; // Head is updated to the node next to the temporary node
 
         if (temp->next)
             temp->next->prev = temp->prev;
