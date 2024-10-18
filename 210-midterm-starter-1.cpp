@@ -203,10 +203,8 @@ public:
         }
         cout << endl;
     }
-};
 
-
-    void every_other_element() {
+ void every_other_element() {
 
         Node* current = head; // Starting point is at the head node 
 
@@ -219,14 +217,28 @@ public:
                 cout << current->data << " "; 
             }
 
-            skip = !skip; // The skip bool 
+            skip = !skip; // The skip bool functions simultaneously with the !skip statement
 
+            current = current->next; // Current node is moved to the next one 
             
         }
+
+        cout << endl; 
     }
+};
 
 int main() {
- 
+
+    DoublyLinkedList l; // Instance of class is created 
+    
+    l.push_back(1);  // Values are inputted into push_back function 
+    l.push_back(2); 
+    l.push_back(3);
+    l.push_back(4); 
+    l.push_back(5); 
+
+    cout << "Every other element: "; 
+    l.every_other_element(); 
     
     return 0;
 }
