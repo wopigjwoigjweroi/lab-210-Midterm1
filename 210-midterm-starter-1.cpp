@@ -1,3 +1,4 @@
+// COMSC-210 | Midterm #1 | Jeremiah Ortiz 
 #include <iostream>
 using namespace std;
 
@@ -204,9 +205,28 @@ public:
     }
 };
 
-int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
+    void every_other_element() {
+
+        Node* current = head; // Starting point is at the head node 
+
+        bool skip = false; // Ensures it skips every other element 
+
+        while (current) {
+
+            if (!skip) { // If theres an element that we don't want skipped, output it
+
+                cout << current->data << " "; 
+            }
+
+            skip = !skip; // The skip bool 
+
+            
+        }
+    }
+
+int main() {
+ 
     
     return 0;
 }
