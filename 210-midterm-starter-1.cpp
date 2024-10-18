@@ -69,46 +69,46 @@ public:
         else
             head = temp->next; // Head is updated to the node next to the temporary node
 
-        if (temp->next)
-            temp->next->prev = temp->prev;
+        if (temp->next) // 
+            temp->next->prev = temp->prev; // Previous node is pointed at temporary node 
         else
-            tail = temp->prev; 
+            tail = temp->prev; // The temporary node's previous node is initialized at the tail 
 
-        delete temp;
+        delete temp; // Temporary node is deleted
     }
 
-    void delete_pos(int pos) {
-        if (!head) {
+    void delete_pos(int pos) { // Function that deletes position of a node
+        if (!head) { // If theres no head, the list is empty 
             cout << "List is empty." << endl;
             return;
         }
     
-        if (pos == 1) {
-            pop_front();
+        if (pos == 1) { // If a position is found, 
+            pop_front(); // remove the front node 
             return;
         }
     
-        Node* temp = head;
+        Node* temp = head; // Temporary node starts at the head of the list
     
-        for (int i = 1; i < pos; i++){
+        for (int i = 1; i < pos; i++){ // Traverses list, and if the temporary node exceeds the list size
             if (!temp) {
-                cout << "Position doesn't exist." << endl;
+                cout << "Position doesn't exist." << endl; // the position doesn't exist
                 return;
             }
             else
-                temp = temp->next;
+                temp = temp->next; // Temporary node points to the next node 
         }
-        if (!temp) {
+        if (!temp) { // If the node exceeds the size limit
             cout << "Position doesn't exist." << endl;
             return;
         }
     
-        if (!temp->next) {
-            pop_back();
+        if (!temp->next) { // If the temporary node moves to the next node 
+            pop_back(); // Calls the pop_back() function 
             return;
         }
     
-        Node* tempPrev = temp->prev;
+        Node* tempPrev = temp->prev; // 
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
         delete temp;
