@@ -107,55 +107,55 @@ public:
             pop_back(); // Calls the pop_back() function 
             return;
         }
-    
-        Node* tempPrev = temp->prev; // 
+        // Following pointers unlink multiple nodes
+        Node* tempPrev = temp->prev; 
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
-        delete temp;
+        delete temp; // Temporary node is deleted
     }
 
-    void push_back(int v) {
-        Node* newNode = new Node(v);
-        if (!tail)
+    void push_back(int v) { // Function that adds nodes to the end of the list 
+        Node* newNode = new Node(v); // A new node is created with a value
+        if (!tail) // If theres no tail, then set the head and tail node equal to the new node
             head = tail = newNode;
         else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+            tail->next = newNode; // Tail node points next to the new node 
+            newNode->prev = tail; // Tail node points previous to the end of the list 
+            tail = newNode; // Tail node is updated to be the new node with the value
         }
     }
     
-    void push_front(int v) {
-        Node* newNode = new Node(v);
-        if (!head)
+    void push_front(int v) { // Function that adds nodes to the front of the list
+        Node* newNode = new Node(v); // New node is created with a value v
+        if (!head) // If theres no head, then set the head and tail node equal to the new node 
             head = tail = newNode;
         else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
+            newNode->next = head; // The node next to the new node points to the head 
+            head->prev = newNode; // The node previous to the head node is the new node  
+            head = newNode; // the head node is updated to be the new node 
         }
     }
     
-    void pop_front() {
+    void pop_front() { // Function that removes head from the list 
 
-        if (!head) {
+        if (!head) { // If there is no head node, the list is empty 
             cout << "List is empty." << endl;
             return;
         }
 
-        Node * temp = head;
+        Node * temp = head; // Temporary node stores the head node
 
-        if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
+        if (head->next) { // If the head node points to another node
+            head = head->next; // Move the head node to the node next to it 
+            head->prev = nullptr; // The node previous to the head node becomes 0
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr; // Both the head and tail are set to nullptr 
+        delete temp; // Delete the temporary head node 
     }
 
-    void pop_back() {
-        if (!tail) {
+    void pop_back() { // Function that removes the tail from the list 
+        if (!tail) { // If theres no tail node at the end, the list is empty 
             cout << "List is empty." << endl;
             return;
         }
@@ -170,14 +170,14 @@ public:
         delete temp;
     }
 
-    ~DoublyLinkedList() {
+    ~DoublyLinkedList() { // A destructor that allocates memory and deletes all the nodes 
         while (head) {
             Node* temp = head;
             head = head->next;
             delete temp;
         }
     }
-    void print() {
+    void print() { // Function that prints all the nodes from head to tail
         Node* current = head;
         if (!current) {
             cout << "List is empty." << endl;
@@ -190,7 +190,7 @@ public:
         cout << endl;
     }
 
-    void print_reverse() {
+    void print_reverse() { // Function that prints nodes from tail to head
         Node* current = tail;
         if (!current) { 
             cout << "List is empty." << endl;
