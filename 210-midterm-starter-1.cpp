@@ -1,41 +1,42 @@
 #include <iostream>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
+const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20; // We create four constant integer variables 
 
+// DoublyLinkedList class is created 
 class DoublyLinkedList {
 private:
-    struct Node {
+    struct Node { // Struct named 'Node' is created which declares elements for the linked list
         int data;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
+        Node(int val, Node* p = nullptr, Node* n = nullptr) {  // Consturctor for Node struct is created 
             data = val; 
-            prev = p;
-            next = n;
+            prev = p; // prev pointer is initialized with p
+            next = n; // next pointer is initialized with p 
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head; // Points to the head of the linked list
+    Node* tail; // Points to the end of the linked list 
 
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    DoublyLinkedList() { head = nullptr; tail = nullptr; } // Class constructor initializes head and tail of linked list
 
-    void insert_after(int value, int position) {
+    void insert_after(int value, int position) { // Function which creates a node if a position is specified 
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
-        Node* newNode = new Node(value);
-        if (!head) {
+        Node* newNode = new Node(value); // New node is created 
+        if (!head) {  // If statement stating if the head is empty then initialize the head and tail with the new node
             head = tail = newNode;
             return;
         }
 
-        Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
+        Node* temp = head; // Temporary node is created 
+        for (int i = 0; i < position && temp; ++i) // Temporary node and position traverse the linked list
             temp = temp->next;
 
         if (!temp) {
